@@ -1,0 +1,5 @@
+*.pyc
+.ruff_cache
+.venv
+
+market-data
