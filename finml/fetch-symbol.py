@@ -17,6 +17,8 @@ def download_daily_history(symbol: str):
         lambda x: x if x.isalnum() else '', map(
         lambda x: '_' if x.isspace() else x, 
         symbol)))
+    # create folder if needed
+    data_folder.mkdir(exist_ok=True)
     data.to_csv(data_folder / f"{symbol_stripped}-1d.csv", encoding='utf-8')
     with open(data_folder / f"{symbol_stripped}-meta.txt", mode='w', encoding='utf-8') as meta:
         json.dump({
