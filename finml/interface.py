@@ -1,12 +1,11 @@
-from abc import ABC, abstractmethod
+from typing import Protocol
 
 
-class TimeSeriesModel(ABC):
+class TimeSeriesModelAdapter(Protocol):
     """
-    Abstract base class for time series models.
+    Interface for time series models.
     """
 
-    @abstractmethod
     def fit(self, data, **kwargs):
         """
         Fit the model to the provided time series data.
@@ -15,9 +14,8 @@ class TimeSeriesModel(ABC):
         - data: The time series data to fit the model to.
         - kwargs: Additional parameters for model fitting.
         """
-        pass
+        ...
 
-    @abstractmethod
     def predict(self, steps, past_data=None):
         """
         Predict future values based on the fitted model and the
@@ -35,4 +33,4 @@ class TimeSeriesModel(ABC):
         Returns:
         - Predicted values for the specified number of steps.
         """
-        pass
+        ...
