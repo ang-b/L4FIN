@@ -1,9 +1,10 @@
 from typing import Protocol
 
 
-class TimeSeriesModelAdapter(Protocol):
+
+class TimeSeriesModel(Protocol):
     """
-    Interface for time series models.
+    An adapter for time series models.
     """
 
     def fit(self, data, **kwargs):
