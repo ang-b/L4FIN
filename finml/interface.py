@@ -1,5 +1,6 @@
-from typing import Protocol
+from typing import Any, Protocol
 
+import numpy.typing as npt
 
 
 class TimeSeriesModel(Protocol):
@@ -7,7 +8,14 @@ class TimeSeriesModel(Protocol):
     An adapter for time series models.
     """
 
-    def fit(self, data, **kwargs):
+    def __init__(self, hyperparameters: dict = None) -> npt.NDArray[Any]:
+        """
+        Initialize the time series model.
+        This method should set up any necessary parameters or configurations.
+        """
+        ...
+
+    def fit(self, data, **kwargs) -> None:
         """
         Fit the model to the provided time series data.
 
@@ -17,7 +25,7 @@ class TimeSeriesModel(Protocol):
         """
         ...
 
-    def predict(self, steps, past_data=None):
+    def predict(self, steps, past_data=None) -> npt.NDArray[Any]:
         """
         Predict future values based on the fitted model and the
         past data provided to it.
