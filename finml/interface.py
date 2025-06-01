@@ -11,8 +11,11 @@ class TimeSeriesModel(Protocol):
     def __init__(self, hyperparameters: dict = None) -> npt.NDArray[Any]:
         """
         Initialize the time series model.
-        This method should set up any necessary parameters or configurations.
+        
+        Parameters:
+        - hyperparameters: A dictionary of hyperparameters for the model.
         """
+        self.hyperparameters = hyperparameters 
         ...
 
     def fit(self, data, **kwargs) -> None:
