@@ -11,6 +11,8 @@ def download_daily_history(symbol: str):
     print(f'Downloading daily history of symbol: {symbol}')
     data = yf.download(symbol, period='max', interval='1d', auto_adjust=True, repair=True)
     # column index level 1 contains the symbol name for multiple queries
+    if data is None:
+        raise RuntimeError(f"Failed to retrieve requested symbol: {symbol}")
     data.columns = data.columns.droplevel(1)
     # some symbol characters from YF cannot be used for filenames: remove spaces, then special chars
     symbol_stripped = ''.join(map(
