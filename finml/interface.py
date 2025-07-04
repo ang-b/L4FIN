@@ -5,18 +5,6 @@ import numpy.typing as npt
 
 class TimeSeriesModel(Protocol):
     """An adapter for time series models."""
-    hyperparameters: dict = {}
-
-    def __init__(self, hyperparameters: dict | None = None):
-        """Initialize the time series model.
-
-        Parameters
-        ----------
-        hyperparameters : dict, optional
-            A dictionary of hyperparameters for the model, by default None.
-        """
-        if hyperparameters is not None:
-            self.hyperparameters = hyperparameters
 
     def fit(self, data: npt.NDArray[Any], **kwargs) -> None:
         """Fit the model to the provided time series data.
