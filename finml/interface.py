@@ -5,18 +5,6 @@ import numpy.typing as npt
 
 class TimeSeriesModel(Protocol):
     """An adapter for time series models."""
-    hyperparameters: dict = {}
-
-    def __init__(self, hyperparameters: dict | None = None):
-        """Initialize the time series model.
-
-        Parameters
-        ----------
-        hyperparameters : dict, optional
-            A dictionary of hyperparameters for the model, by default None.
-        """
-        if hyperparameters is not None:
-            self.hyperparameters = hyperparameters
 
     def fit(self, data: npt.NDArray[Any], **kwargs) -> None:
         """Fit the model to the provided time series data.
@@ -28,19 +16,18 @@ class TimeSeriesModel(Protocol):
         """
         ...
 
-    def predict(self, steps: int, past_data=None) -> npt.NDArray[Any]:
-        """Predict future values based on the fitted model and the
-        past data provided to it.
+    def predict(self, steps: int, initial_condition: list | None = None) -> npt.NDArray[Any]:
+        """Predict future values based on the fitted model and the past data provided to it.
 
-        `past_data` is assumed to be a contiguous sequence of points.
-        The predictions are then made following the last point in `past_data`.
+        `initial_condition` is the minimum set of samples needed to calculate a prediction step.
 
         Parameters
         ----------
         steps : int
             The number of future time steps to predict.
-        past_data : _type_, optional
-            Historical data to use for prediction, by default None
+        initial_condition : Any, optional
+            Initial samples to calculate a model step. When `None` the model will predict data starting from the last 
+            samples of the training data. 
 
         Returns
         -------
