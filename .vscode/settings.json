@@ -1,4 +1,7 @@
 {
     "python.analysis.diagnosticMode": "openFilesOnly",
-    "python.analysis.typeCheckingMode": "standard"
+    "python.analysis.typeCheckingMode": "standard",
+    "editor.rulers": [
+        120
+    ]
 }
